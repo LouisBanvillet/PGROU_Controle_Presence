@@ -44,7 +44,6 @@ public class Etudiant {
 				int len = 1024;
 				byte[] read = new byte[len];
 
-				
 				while ((len = in.read(read)) > 0) {
 					out.write(read, 0, len);
 				}
