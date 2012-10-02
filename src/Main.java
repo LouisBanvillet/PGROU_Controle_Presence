@@ -3,8 +3,9 @@ public class Main {
 	
 	/**
 	 * Chaque fenêtre utilisée dans l'application est un attribut,
-	 * qui pourra être utilisé par toutes les classes
+	 * qui pourra être utilisé par toutes les classes. kevon
 	 */
+	
 	protected static PageAccueil fenetreAccueil;
 	protected static SelectionCours fenetreSelectionCours;
 	protected static ControlePresence fenetreControle;
