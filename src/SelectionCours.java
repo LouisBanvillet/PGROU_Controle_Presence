@@ -164,7 +164,7 @@ public class SelectionCours extends JFrame {
 		ListeEtudiants.telechargerPhotos();
 		
 		// On active la touche VERR MAJ (pour que le scan des cartes retourne des chiffres)
-		Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, true);
+		//Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, true);
 		
 		// On affiche la fenêtre de contrôle, on masque la fenêtre de séléction du cours
 		Main.fenetreSelectionCours.setVisible(false);

@@ -41,8 +41,9 @@ public class Etudiant {
 				URLConnection con = adresse.openConnection();
 				BufferedInputStream in = new BufferedInputStream(con.getInputStream());
 				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("img/" + this.numeroEtudiant + ".jpg"));
-				byte[] read = new byte[1];
-				int len = 1;
+				int len = 1024;
+				byte[] read = new byte[len];
+
 				
 				while ((len = in.read(read)) > 0) {
 					out.write(read, 0, len);

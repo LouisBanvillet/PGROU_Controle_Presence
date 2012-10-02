@@ -202,8 +202,9 @@ public class ControlePresence extends JFrame {
 	
 	
 	public void rechercheEtUpdate() {
-		String myfareTrouve = textFieldInput.getText();
+		String myfareTrouve = convert(textFieldInput.getText());
 		
+		System.out.println(myfareTrouve);
 		for (Etudiant etu : ListeEtudiants.etudiants) {
 			if (etu.getNumeroMifare().equals(myfareTrouve)) {
 				etu.setPresent(true);
@@ -215,6 +216,37 @@ public class ControlePresence extends JFrame {
 		this.majPhoto();
 
 		this.repaint();
+	}
+	
+	public String convert(String num) {
+		String ret = "";
+		char[] c = num.toLowerCase().toCharArray();
+		
+		for(int i = 0 ; i < num.length() ; i++) {
+			if(c[i] == '&' || (c[i] == '1')) {
+				ret += "1";
+			} else if((c[i] == 'é') || (c[i] == '2')) {
+				ret += "2";
+			} else if((c[i] == '"') || (c[i] == '3')) {
+				ret += "3";
+			} else if((c[i] == '\'') || (c[i] == '4')) {
+				ret += "4";
+			} else if((c[i] == '(') || (c[i] == '5')) {
+				ret += "5";
+			} else if((c[i] == '-') || (c[i] == '6')) {
+				ret += "6";
+			} else if((c[i] == 'è') || (c[i] == '7')) {
+				ret += "7";
+			} else if((c[i] == '_') || (c[i] == '8')) {
+				ret += "8";
+			} else if((c[i] == 'ç') || (c[i] == '9')) {
+				ret += "9";
+			} else if((c[i] == 'à') || (c[i] == '0')) {
+				ret += "0";
+			}
+		}
+		
+		return ret;
 	}
 	
 	
@@ -247,7 +279,7 @@ public class ControlePresence extends JFrame {
 	 */
 	public void terminerControle() {
 		// On désactive la touche VERR MAJ
-		Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
+		//Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
 		
 		// On masque la fenêtre de contrôle et on affiche la fenêtre de vérification
 		Main.fenetreControle.setVisible(false);
@@ -269,7 +301,7 @@ public class ControlePresence extends JFrame {
 		
 		if(choix == 0) {
 			// On désactive la touche VERR MAJ
-			Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
+			//Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
 			
 			// On masque la fenêtre de contrôle de présence, on affiche la fenêtre de séléction du cours
 			Main.fenetreControle.setVisible(false);
