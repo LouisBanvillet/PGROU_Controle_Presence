@@ -170,6 +170,7 @@ public class SelectionCours extends JFrame {
 		Main.fenetreSelectionCours.setVisible(false);
 		Main.fenetreControle.majFenetre();
 		Main.fenetreControle.setVisible(true);
+		Main.fenetreControle.textFocus();
 	}
 	
 	

@@ -43,8 +43,7 @@ public class ControlePresence extends JFrame {
 	public ControlePresence() {
 		this.dernierEtudiant = null;
 		majFenetre();
-	}
-	
+	}	
 	
 	/**
 	 * Création de la fenêtre de contrôle de présence
@@ -308,4 +307,11 @@ public class ControlePresence extends JFrame {
 			Main.fenetreSelectionCours.setVisible(true);
 		}
 	}
+	
+
+	
+	public void textFocus(){
+		textFieldInput.requestFocus();
+	}
+	
 }
