@@ -10,6 +10,7 @@ public class Main {
 	protected static SelectionCours fenetreSelectionCours;
 	protected static ControlePresence fenetreControle;
 	protected static FenetreListeAbsents fenetreListeAbsents;
+	protected static FenetreRecapitulatif fenetreRecapitulatif;
 	
 	
 	/**

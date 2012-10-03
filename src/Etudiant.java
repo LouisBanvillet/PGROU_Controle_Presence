@@ -15,9 +15,10 @@ public class Etudiant {
 	protected String numeroEtudiant;
 	protected static String urlPhoto = "http://agap.ec-nantes.fr/AGAP/Photo/";
 	protected Boolean present = false;
+	protected Boolean excuse = false;
 	
-	
-	
+
+
 	public Etudiant(String nom, String prenom, String groupe, String numeroMifare, String numeroEtudiant) {
 		this.nom = nom;
 		this.prenom = prenom;
@@ -108,4 +109,13 @@ public class Etudiant {
 	public void setPresent(Boolean present) {
 		this.present = present;
 	}
+	public Boolean getExcuse() {
+		return excuse;
+	}
+	public void setExcuse(Boolean excuse) {
+		this.excuse = excuse;
+	}
+
+
+	
 }

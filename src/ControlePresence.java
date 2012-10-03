@@ -282,8 +282,8 @@ public class ControlePresence extends JFrame {
 		
 		// On masque la fenêtre de contrôle et on affiche la fenêtre de vérification
 		Main.fenetreControle.setVisible(false);
-		Main.fenetreListeAbsents.creerListeAbsents();
-		Main.fenetreListeAbsents.setVisible(true);
+		Main.fenetreRecapitulatif = new FenetreRecapitulatif();
+		Main.fenetreRecapitulatif.setVisible(true);
 	}
 	
 	
