@@ -19,7 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 
-public class FenetreModificacionPresence extends JFrame {
+public class FenetreModificationPresence extends JFrame {
 
 	private JPanel contentPane;
 	private ArrayList<Etudiant> listeAbsents;
@@ -48,7 +48,7 @@ public class FenetreModificacionPresence extends JFrame {
 	 * Création de la fenêtre
 	 * @param liste des étudiants du groupe concerné par le contrôle de présence
 	 */
-	public FenetreModificacionPresence() {
+	public FenetreModificationPresence() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		mTablePresence = new TablePresence();
@@ -120,12 +120,11 @@ public class FenetreModificacionPresence extends JFrame {
 	/**
 	 * Retour à la fenêtre de contrôle des présences
 	 */
-	public void retourControle() {
-		// On active la touche VERR MAJ
-		Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, true);
-		
+	public void retourControle() {		
 		// On masque la fenêtre avec lal iste des absents, on affiche la fenêtre de contrôle de présence
-		Main.fenetreRecapitulatif.setVisible(false);
+		Main.fenetreModificationPresence.setVisible(false);
+		Main.fenetreControle.majFenetre();
 		Main.fenetreControle.setVisible(true);
+		Main.fenetreControle.textFocus();
 	}
 }

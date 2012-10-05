@@ -134,12 +134,9 @@ public class FenetreRecapitulatif extends JFrame {
 	/**
 	 * Retour à la fenêtre de contrôle des présences
 	 */
-	public void retourControle() {
-		// On active la touche VERR MAJ
-		Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, true);
-		
+	public void retourControle() {		
 		// On masque la fenêtre avec lal iste des absents, on affiche la fenêtre de contrôle de présence
 		Main.fenetreRecapitulatif.setVisible(false);
-		Main.fenetreListeAbsents.setVisible(true);
+		Main.fenetreModificationPresence.setVisible(true);
 	}
 }
