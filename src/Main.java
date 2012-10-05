@@ -11,6 +11,7 @@ public class Main {
 	protected static ControlePresence fenetreControle;
 	protected static FenetreListeAbsents fenetreListeAbsents;
 	protected static FenetreRecapitulatif fenetreRecapitulatif;
+	protected static FenetreModificationPresence fenetreModificationPresence;
 	
 	
 	/**
@@ -23,12 +24,14 @@ public class Main {
 		fenetreSelectionCours = new SelectionCours();
 		fenetreControle = new ControlePresence();
 		fenetreListeAbsents = new FenetreListeAbsents();
+		fenetreModificationPresence = new FenetreModificationPresence();
 		
 		// On masque toutes les fenêtre sauf la fenêtre d'accueil
 		fenetreSelectionCours.setVisible(false);
 		fenetreControle.setVisible(false);
 		fenetreListeAbsents.setVisible(false);
 		fenetreAccueil.setVisible(true);
+		fenetreModificationPresence.setVisible(false);
 	}
 
 }
