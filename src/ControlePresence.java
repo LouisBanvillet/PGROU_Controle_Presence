@@ -207,6 +207,7 @@ public class ControlePresence extends JFrame {
 		for (Etudiant etu : ListeEtudiants.etudiants) {
 			if (etu.getNumeroMifare().equals(myfareTrouve)) {
 				etu.setPresent(true);
+				etu.setPresenceMyFare(true);
 				dernierEtudiant = etu;
 			}
 		}

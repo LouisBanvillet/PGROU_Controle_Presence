@@ -24,7 +24,7 @@ public class FenetreModificationPresence extends JFrame {
 	private JPanel contentPane;
 	private ArrayList<Etudiant> listeAbsents;
 	private JTable tableEtudiants;
-	private TablePresence mTablePresence;
+	private TableModificationPresence mTablePresence;
 	
 	/**
 	 * Création de la liste des absents
@@ -51,8 +51,8 @@ public class FenetreModificationPresence extends JFrame {
 	public FenetreModificationPresence() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		mTablePresence = new TablePresence();
-		tableEtudiants = new JTable(new TablePresence());
+		mTablePresence = new TableModificationPresence();
+		tableEtudiants = new JTable(new TableModificationPresence());
 		
 		
 		JScrollPane scrollPane = new JScrollPane(tableEtudiants);
