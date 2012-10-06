@@ -22,7 +22,7 @@ public class FenetreRecapitulatif extends JFrame {
 	private JPanel contentPane;
 	private ArrayList<Etudiant> listeAbsents = new ArrayList<Etudiant>();
 	JTable tableAbsents;
-	
+	private TableRecapitulatif tableModelRecapitulatif;
 	
 	/**
 	 * Création de la liste des absents
@@ -35,23 +35,7 @@ public class FenetreRecapitulatif extends JFrame {
 				listeAbsents.add(etu);
 			}
 		}
-
-		//On remplit le tableau des absents en indiquant si l'élève est excusé ou pas
-		if(listeAbsents.size() > 1)
-		{
-			String[][] data = new String[listeAbsents.size()][2];
-			for (int i = 0; i < listeAbsents.size(); i++) {
-				data[i][0] = listeAbsents.get(i).getNom();
-				if(listeAbsents.get(i).getExcuse()){
-					data[i][1] = "oui";
-				}else{data[i][1] = "non";}
-			}
-			String  title[] = {"Liste absents", "Excusé?"};
-
-			tableAbsents = new JTable(new DefaultTableModel(data, title));
-			
-		}
-
+		
 	}
 	
 	
@@ -61,11 +45,12 @@ public class FenetreRecapitulatif extends JFrame {
 	 * @param liste des étudiants du groupe concerné par le contrôle de présence
 	 */
 	public FenetreRecapitulatif() {
-		tableAbsents = new JTable(new DefaultTableModel());
+		tableModelRecapitulatif = new TableRecapitulatif();
+		tableAbsents = new JTable(tableModelRecapitulatif);
 		creerListeAbsents();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 550, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
