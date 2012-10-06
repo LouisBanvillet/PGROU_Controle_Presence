@@ -15,6 +15,7 @@ public class Etudiant {
 	protected String numeroEtudiant;
 	protected static String urlPhoto = "http://agap.ec-nantes.fr/AGAP/Photo/";
 	protected Boolean present = false;
+	protected Boolean presenceMyFare = false;
 	protected Boolean excuse = false;
 	
 
@@ -27,6 +28,14 @@ public class Etudiant {
 		this.numeroEtudiant = numeroEtudiant;
 	}
 	
+	
+	public Boolean getPresenceMyFare(){
+		return this.presenceMyFare;		
+	}
+	
+	public void setPresenceMyFare(Boolean value){
+		this.presenceMyFare = value;		
+	}
 	
 	
 	/**
