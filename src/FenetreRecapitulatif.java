@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -105,7 +106,8 @@ public class FenetreRecapitulatif extends JFrame {
 	}
 	
 	public void envoyer() {
-		JOptionPane.showMessageDialog(null,"Non implémenté pour le moment", "Impossible", JOptionPane.ERROR_MESSAGE);
+		BDDConnexion.envoyerDonnees(Main.fenetreControle.getCours_id(), Main.fenetreControle.getListeEtudiants());
+		System.exit(0);
 	}
 	
 	

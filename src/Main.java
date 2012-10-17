@@ -1,4 +1,5 @@
 
+
 public class Main {
 	
 	/**
@@ -18,7 +19,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		BDDConnexion.init();
-		
+				
 		// On créé une instance de chaque fenêtre
 		fenetreAccueil = new PageAccueil();
 		fenetreSelectionCours = new SelectionCours();

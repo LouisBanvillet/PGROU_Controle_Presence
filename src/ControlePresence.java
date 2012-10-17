@@ -189,7 +189,6 @@ public class ControlePresence extends JFrame {
 	}
 
 
-
 	public void majPhoto() {
 		String cheminImage = "";
 
@@ -199,19 +198,16 @@ public class ControlePresence extends JFrame {
 		else {
 			cheminImage = this.dernierEtudiant.getLienPhotoDisque();
 		}
-		System.out.println(cheminImage);
 
 		ImageIcon icone = createImageIcon(cheminImage);
 
 		labelphotoEleve.setIcon(icone);
 	}
-
-
+	
 
 	public void rechercheEtUpdate() {
 		String myfareTrouve = convert(textFieldInput.getText());
 
-		System.out.println(myfareTrouve);
 		for (Etudiant etu : listeEtudiants) {
 			if (etu.getNumeroMifare().equals(myfareTrouve)) {
 				etu.setPresent(true);

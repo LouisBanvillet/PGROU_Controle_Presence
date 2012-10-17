@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -6,7 +7,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import javax.swing.JOptionPane;
 
 
 public class BDDConnexion {
@@ -196,6 +201,97 @@ public class BDDConnexion {
 		}
 
 		return listeEtudiants;
+	}
+
+
+	/**
+	 * Renvoie eleve_id connaissant numeroEtudiant
+	 * @param numeroEtudiant
+	 */
+	public static int getEleveID(String numeroEtudiant){
+		int eleve_id = 0;
+
+		try {
+			Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			String query = ("SELECT eleves.eleves_id "
+					+ "FROM eleves "
+					+ "WHERE eleves.eleves_numeroetudiant = '" + numeroEtudiant + "';");
+
+			ResultSet res = state.executeQuery(query);
+
+			while (res.next()) {
+				eleve_id = res.getInt("eleves_id");
+			}
+
+			res.close();
+			state.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return eleve_id;
+	}
+
+
+	/**
+	 * Envoi les données reuceuillies à la BDD
+	 * @param cours_id
+	 * @param listeEtudiants
+	 */
+	public static void envoyerDonnees(int cours_id, ArrayList<Etudiant> listeEtudiants){
+
+		//On ajoute une date au cours correspondant dans la BDD
+		try {
+			Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			Date date = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+			String query = ("UPDATE cours "
+					+ "SET cours_date = '" + dateFormat.format(date)
+					+ "' WHERE cours_id = '" + cours_id +"';");
+
+			ResultSet res = state.executeQuery(query);
+
+			res.close();
+			state.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		boolean envoye = false;
+
+		for(Etudiant etu : listeEtudiants){
+			try {
+				Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+				int eleveStatus = 2;
+				if(etu.getExcuse()){eleveStatus = 3;}
+				if(etu.getPresent()){eleveStatus = 1;}
+
+				String query = ("INSERT INTO presence (cours_id, eleves_id, presence_status) "
+						+ "VALUES (" + cours_id + ", " + getEleveID(etu.getNumeroEtudiant()) + ", " + eleveStatus + ")");
+
+				ResultSet res = state.executeQuery(query);
+
+				res.close();
+				state.close();
+
+				envoye = true;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		if(envoye){JOptionPane.showConfirmDialog((Component) null,
+				"Les données ont été envoyées.",
+				"Attention",
+				JOptionPane.OK_CANCEL_OPTION);
+		}
 	}
 
 
