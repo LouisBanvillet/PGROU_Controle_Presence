@@ -7,10 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
 import javax.swing.JOptionPane;
 
 
@@ -148,7 +145,7 @@ public class BDDConnexion {
 
 		try {
 			Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-
+			
 			String query = ("SELECT DISTINCT presence.eleves_id "
 					+ "FROM presence "
 					+ "WHERE presence.cours_id = '" + cours_id + "';");
@@ -246,16 +243,11 @@ public class BDDConnexion {
 		try {
 			Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
-			Date date = new Date();
-			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-
 			String query = ("UPDATE cours "
-					+ "SET cours_date = '" + dateFormat.format(date)
-					+ "' WHERE cours_id = '" + cours_id +"';");
+					+ "SET cours_date = NOW() WHERE cours_id = '" + cours_id +"';");
 
-			ResultSet res = state.executeQuery(query);
+			state.executeUpdate(query);
 
-			res.close();
 			state.close();
 
 		} catch (Exception e) {
@@ -272,12 +264,14 @@ public class BDDConnexion {
 				if(etu.getExcuse()){eleveStatus = 3;}
 				if(etu.getPresent()){eleveStatus = 1;}
 
-				String query = ("INSERT INTO presence (cours_id, eleves_id, presence_status) "
-						+ "VALUES (" + cours_id + ", " + getEleveID(etu.getNumeroEtudiant()) + ", " + eleveStatus + ")");
+				String query = ("UPDATE presence "
+						+ "SET presence_status = " + eleveStatus
+						+ " WHERE presence.cours_id = '" + cours_id 
+						+ "' AND presence.eleves_id = '" + getEleveID(etu.getNumeroEtudiant()) 
+						+ "';");
+				
+				state.executeUpdate(query);
 
-				ResultSet res = state.executeQuery(query);
-
-				res.close();
 				state.close();
 
 				envoye = true;
@@ -287,7 +281,7 @@ public class BDDConnexion {
 			}
 		}
 
-		if(envoye){JOptionPane.showConfirmDialog((Component) null,
+		if(envoye){JOptionPane.showMessageDialog((Component) null,
 				"Les données ont été envoyées.",
 				"Attention",
 				JOptionPane.OK_CANCEL_OPTION);
