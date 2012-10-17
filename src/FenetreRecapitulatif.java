@@ -1,11 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,30 +11,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 
 public class FenetreRecapitulatif extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ArrayList<Etudiant> listeAbsents = new ArrayList<Etudiant>();
 	JTable tableAbsents;
 	private TableRecapitulatif tableModelRecapitulatif;
-	
-	/**
-	 * Création de la liste des absents
-	 */
-	public void creerListeAbsents() {
-		
-		// On parcours la liste des étudiants pour ajouter les absents
-		for(Etudiant etu : ListeEtudiants.etudiants) {
-			if(!etu.getPresent()){
-				listeAbsents.add(etu);
-			}
-		}
-		
-	}
-	
 	
 	
 	/**
@@ -49,8 +31,9 @@ public class FenetreRecapitulatif extends JFrame {
 		tableAbsents = new JTable(tableModelRecapitulatif);
 		creerListeAbsents();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(550, 400);
+        this.setLocationRelativeTo(null);
 
-		setBounds(100, 100, 550, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -105,13 +88,24 @@ public class FenetreRecapitulatif extends JFrame {
 		contentPane.add(boiteVerticale,BorderLayout.CENTER);
 		contentPane.add(panel_boutons,BorderLayout.SOUTH);
 	}
+
 	
-	
+	/**
+	 * Création de la liste des absents
+	 */
+	public void creerListeAbsents() {
+		
+		// On parcours la liste des étudiants pour ajouter les absents
+		for(Etudiant etu : Main.fenetreControle.getListeEtudiants()) {
+			if(!etu.getPresent()){
+				listeAbsents.add(etu);
+			}
+		}
+		
+	}
 	
 	public void envoyer() {
-		JOptionPane jop = new JOptionPane();
-		
-		jop.showMessageDialog(null,"Non implémenté pour le moment", "Impossible", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null,"Non implémenté pour le moment", "Impossible", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	

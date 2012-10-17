@@ -3,11 +3,14 @@ import javax.swing.table.AbstractTableModel;
 
 public class TableRecapitulatif extends AbstractTableModel{
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public int getColumnCount() {
 		return 2;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Class getColumnClass(int column) {
         switch (column) {
             case 0:
@@ -29,7 +32,7 @@ public class TableRecapitulatif extends AbstractTableModel{
 	@Override
 	public int getRowCount() {
 		int count = 0;
-		for(Etudiant e : ListeEtudiants.etudiants)
+		for(Etudiant e : Main.fenetreControle.getListeEtudiants())
 		{
 			if(!e.getPresent())
 				count++;
@@ -46,7 +49,7 @@ public class TableRecapitulatif extends AbstractTableModel{
 	public Object getValueAt(int row, int col) {
 		int count = 0;
 		if(col == 0){
-			for(Etudiant e : ListeEtudiants.etudiants){
+			for(Etudiant e : Main.fenetreControle.getListeEtudiants()){
 				if(!e.getPresent()){
 					if(row == count)
 						return e.getNom() + " " + e.getPrenom(); 
@@ -55,7 +58,7 @@ public class TableRecapitulatif extends AbstractTableModel{
 				}
 			}
 		}else{
-			for(Etudiant e : ListeEtudiants.etudiants){
+			for(Etudiant e : Main.fenetreControle.getListeEtudiants()){
 				if(!e.getPresent()){
 					if(row == count){
 						return e.getExcuse();

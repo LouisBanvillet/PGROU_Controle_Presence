@@ -1,47 +1,26 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 
 public class FenetreModificationPresence extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ArrayList<Etudiant> listeAbsents;
 	private JTable tableEtudiants;
 	private TableModificationPresence mTablePresence;
-	
-	/**
-	 * Création de la liste des absents
-	 */
-	public void creerListeAbsents() {
-
-		listeAbsents = new ArrayList<Etudiant>();
-		//textAreaEtudiantsAbsents.setText("");
-		// On parcours la liste des étudiants pour ajouter les absents
-		for(Etudiant etu : ListeEtudiants.etudiants) {
-			if(!etu.getPresent()){
-				listeAbsents.add(etu);
-				//textAreaEtudiantsAbsents.setText(textAreaEtudiantsAbsents.getText()+etu.getPrenom() + " " + etu.getNom()+ "\n");
-			}
-		}
-	}
-	
 	
 	
 	/**
@@ -50,6 +29,8 @@ public class FenetreModificationPresence extends JFrame {
 	 */
 	public FenetreModificationPresence() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(600, 400);
+        this.setLocationRelativeTo(null);
 
 		mTablePresence = new TableModificationPresence();
 		tableEtudiants = new JTable(new TableModificationPresence());
@@ -57,7 +38,6 @@ public class FenetreModificationPresence extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane(tableEtudiants);
 		
-		setBounds(100, 100, 600, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -107,6 +87,22 @@ public class FenetreModificationPresence extends JFrame {
 		contentPane.add(panel_boutons,BorderLayout.SOUTH);
 	}
 	
+	
+	/**
+	 * Création de la liste des absents
+	 */
+	public void creerListeAbsents() {
+
+		listeAbsents = new ArrayList<Etudiant>();
+		//textAreaEtudiantsAbsents.setText("");
+		// On parcours la liste des étudiants pour ajouter les absents
+		for(Etudiant etu : Main.fenetreControle.getListeEtudiants()) {
+			if(!etu.getPresent()){
+				listeAbsents.add(etu);
+				//textAreaEtudiantsAbsents.setText(textAreaEtudiantsAbsents.getText()+etu.getPrenom() + " " + etu.getNom()+ "\n");
+			}
+		}
+	}	
 	
 	
 	public void valider() {

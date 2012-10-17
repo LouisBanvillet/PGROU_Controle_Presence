@@ -10,20 +10,17 @@ public class Etudiant {
 	
 	protected String nom;
 	protected String prenom;
-	protected String groupe;
 	protected String numeroMifare;
 	protected String numeroEtudiant;
 	protected static String urlPhoto = "http://agap.ec-nantes.fr/AGAP/Photo/";
 	protected Boolean present = false;
 	protected Boolean presenceMyFare = false;
 	protected Boolean excuse = false;
-	
 
 
-	public Etudiant(String nom, String prenom, String groupe, String numeroMifare, String numeroEtudiant) {
+	public Etudiant(String nom, String prenom, String numeroMifare, String numeroEtudiant) {
 		this.nom = nom;
 		this.prenom = prenom;
-		this.groupe = groupe;
 		this.numeroMifare = numeroMifare;
 		this.numeroEtudiant = numeroEtudiant;
 	}
@@ -90,12 +87,6 @@ public class Etudiant {
 	}
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-	public String getGroupe() {
-		return groupe;
-	}
-	public void setGroupe(String groupe) {
-		this.groupe = groupe;
 	}
 	public String getNumeroMifare() {
 		return numeroMifare;

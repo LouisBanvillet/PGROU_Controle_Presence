@@ -2,11 +2,13 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,12 +20,14 @@ import javax.swing.border.EmptyBorder;
 
 public class SelectionCours extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private ArrayList<String> listeMatieres,listeGroupes;
-	private static String matiereChoisie = "";
+	private ArrayList<String> listePromo, listeGroupes, listeMatieres;
+	private static String promoChoisie = "";
 	private static String groupeChoisi = "";
+	private static String matiereChoisie = "";
 	
-	JComboBox jcMatiere,jcGroupe;
+	private JComboBox jcPromo, jcGroupe, jcMatiere;
 	
 	
 	/**
@@ -31,22 +35,22 @@ public class SelectionCours extends JFrame {
 	 */
 	public SelectionCours() {
 		
-		// Liste des matières
-		listeMatieres = new ArrayList<String>();
-		listeMatieres.add("SRETI");listeMatieres.add("OBJET");listeMatieres.add("GELOL");listeMatieres.add("SRETI");
-		listeMatieres.add("BDONN");listeMatieres.add("QLOGI");listeMatieres.add("TREEL");listeMatieres.add("GRAFI");
-		
+		// Liste des promotions
+		listePromo = new ArrayList<String>();
+		listePromo.add("                ");listePromo.add("Ei1");listePromo.add("Ei2");listePromo.add("Ei3");
 		
 		// Liste des groupes
 		listeGroupes = new ArrayList<String>();
-		listeGroupes.add("EI3INFO");
-		listeGroupes.add("EI3ISIS");
-		listeGroupes.add("EI3INFO-SI");
-		listeGroupes.add("EI3INFO-GI");
+		listeGroupes.add("                ");
 		
+		// Liste des matières
+		listeMatieres = new ArrayList<String>();
+		listeMatieres.add("                ");
+				
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 349, 224);
+		setSize(349, 254);
+        this.setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -60,34 +64,47 @@ public class SelectionCours extends JFrame {
 		
 		// Milieu de la fenêtre
 		JPanel milieux = new JPanel();
-		milieux.setLayout(new GridLayout(3,0));
-		
-		// Liste déroulante des matières
-		JPanel milieux1 = new JPanel();
-		milieux1.setLayout(new FlowLayout());
-		JLabel jlMatiere = new JLabel("Sélectionnez la matière");
-		jcMatiere = new JComboBox();
-		remplireComboMatiere();
-		milieux1.add(jlMatiere);
-		milieux1.add(jcMatiere);
-		milieux.add(milieux1);
+		milieux.setLayout(new GridLayout(4,0));
+
+		// Liste déroulante des promotions
+		JPanel milieux0 = new JPanel();
+		milieux0.setLayout(new FlowLayout());
+		JLabel jlPromo = new JLabel("Sélectionnez la promotion");
+		jcPromo = new JComboBox();
+		remplirComboPromo();
+		milieux0.add(jlPromo);
+		milieux0.add(jcPromo);
+		milieux.add(milieux0);
+        jcPromo.addActionListener(new PromoAction());
 		
 		// Liste déroulante des groupes
-		JPanel milieux2 = new JPanel();
-		milieux2.setLayout(new FlowLayout());
+		JPanel milieux1 = new JPanel();
+		milieux1.setLayout(new FlowLayout());
 		JLabel jlgroupe = new JLabel("Sélectionnez le groupe");
 		jcGroupe = new JComboBox();
-		remplireComboGroupe();
-		milieux2.add(jlgroupe);
-		milieux2.add(jcGroupe);
+		remplirComboGroupe();
+		milieux1.add(jlgroupe);
+		milieux1.add(jcGroupe);	
+		milieux.add(milieux1);
+        jcGroupe.addActionListener(new GroupeAction());
 		
+		// Liste déroulante des matières
+		JPanel milieux2 = new JPanel();
+		milieux2.setLayout(new FlowLayout());
+		JLabel jlMatiere = new JLabel("Sélectionnez la matière");
+		jcMatiere = new JComboBox();
+		remplirComboMatiere();
+		milieux2.add(jlMatiere);
+		milieux2.add(jcMatiere);
 		milieux.add(milieux2);
 		
 		// Date
 		JPanel milieux3 = new JPanel();
 		milieux3.setLayout(new FlowLayout());
-		JLabel jlDate1 = new JLabel("Date");
-		JLabel jlDate2 = new JLabel("1er Janvier 2034 - 02h00");
+		JLabel jlDate1 = new JLabel("Date :");
+		Date time = new Date();
+        DateFormat dfl = DateFormat.getDateInstance(DateFormat.FULL);
+		JLabel jlDate2 = new JLabel(dfl.format(time));
 		milieux3.add(jlDate1);
 		milieux3.add(jlDate2);
 		
@@ -120,17 +137,44 @@ public class SelectionCours extends JFrame {
 		contentPane.add(bas,BorderLayout.SOUTH);
 	}
 	
+	/**
+     * La liste des groupes est initialisée selon l'item selectionné de la liste déroulante des promotions
+     * @param args the command line arguments
+     */
+    class PromoAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+        	promoChoisie = (String) jcPromo.getSelectedItem();
+        	listeGroupes = BDDConnexion.listeGroupes(promoChoisie);
+        	remplirComboGroupe();
+        }
+    }
+    
+    /**
+     * La liste des matières est initialisée selon les items selectionnés dans la liste déroulante des promotions et celle des groupes
+     * @param args the command line arguments
+     */
+    class GroupeAction implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+        	promoChoisie = (String) jcPromo.getSelectedItem();
+        	groupeChoisi = (String) jcGroupe.getSelectedItem();
+        	listeMatieres = BDDConnexion.listeMatieres(promoChoisie, groupeChoisi);
+        	remplirComboMatiere();
+        }
+    }
+    
+	public void remplirComboPromo() {
+		for(String s : listePromo) {
+			jcPromo.addItem(s);
+		}
+	}
 	
-	
-	public void remplireComboMatiere() {
+	public void remplirComboMatiere() {
 		for(String s : listeMatieres) {
 			jcMatiere.addItem(s);
 		}
 	}
 	
-	
-	
-	public void remplireComboGroupe() {
+	public void remplirComboGroupe() {
 		for(String s : listeGroupes) {
 			jcGroupe.addItem(s);
 		}
@@ -154,17 +198,12 @@ public class SelectionCours extends JFrame {
 	 */
 	public void commencer() {
 		// On récupère les valeurs des listes déroulantes
-		matiereChoisie = (String) jcMatiere.getSelectedItem();
+		promoChoisie = (String) jcPromo.getSelectedItem();
 		groupeChoisi = (String) jcGroupe.getSelectedItem();
+		matiereChoisie = (String) jcMatiere.getSelectedItem();
 		
-		// On récupère la liste des étudiants du groupe choisi dans le fichier XML
-		ListeEtudiants.lireFichierXML(groupeChoisi);
-		
-		// On télécharge les photos des étudiants concernés
-		ListeEtudiants.telechargerPhotos();
-		
-		// On active la touche VERR MAJ (pour que le scan des cartes retourne des chiffres)
-		//Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, true);
+		int cours_id = BDDConnexion.coursID(promoChoisie, groupeChoisi, matiereChoisie);
+		Main.fenetreControle.setCours_id(cours_id);
 		
 		// On affiche la fenêtre de contrôle, on masque la fenêtre de séléction du cours
 		Main.fenetreSelectionCours.setVisible(false);

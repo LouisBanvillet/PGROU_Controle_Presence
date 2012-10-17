@@ -17,6 +17,7 @@ public class Main {
 	 * Lancement de l'application
 	 */
 	public static void main(String[] args) {
+		BDDConnexion.init();
 		
 		// On créé une instance de chaque fenêtre
 		fenetreAccueil = new PageAccueil();

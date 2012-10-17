@@ -9,12 +9,12 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 public class MaListeEleves extends DefaultListCellRenderer {
-	
+
+	private static final long serialVersionUID = 1L;
 	private JLabel labelNom ;
 	private JLabel labelImage;
 	private Etudiant etudiant;
-	
-	
+		
 	
 	public MaListeEleves() {
 		labelImage = new JLabel();
