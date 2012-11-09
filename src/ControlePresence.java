@@ -44,7 +44,7 @@ public class ControlePresence extends JFrame {
 	}	
 
 	/**
-	 * Création de la fenêtre de contrôle de présence
+	 * CrÃ©ation de la fenÃªtre de contrÃ´le de prÃ©sence
 	 */
 	public void majFenetre() {
 		remplirListeEtudiants();
@@ -58,8 +58,8 @@ public class ControlePresence extends JFrame {
 		setContentPane(contentPane);
 
 
-		// Affichage du titre de la fenêtre
-		String labelTitre = "Contrôle de présence - " +
+		// Affichage du titre de la fenÃªtre
+		String labelTitre = "ContrÃ´le de prÃ©sence - " +
 				SelectionCours.getMatiereChoisie() + " - " +
 				SelectionCours.getGroupeChoisi();
 		JLabel titreFenetre = new JLabel(labelTitre);
@@ -112,10 +112,10 @@ public class ControlePresence extends JFrame {
 		boiteVerticale.add(boiteHorizontale2);
 
 
-		// Bouton de fin du contrôle de présence
+		// Bouton de fin du contrÃ´le de prÃ©sence
 		Box boiteHorizontale3= Box.createHorizontalBox();
 		boiteHorizontale3.add(Box.createGlue());
-		JButton boutonFinControle = new JButton("Fin du contrôle");
+		JButton boutonFinControle = new JButton("Fin du contrÃ´le");
 		boutonFinControle.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				terminerControle();
@@ -148,7 +148,7 @@ public class ControlePresence extends JFrame {
 		panelDroite.add(boiteVerticale,BorderLayout.CENTER);
 
 
-		// Gestion de la partie gauche (liste des étudiants)
+		// Gestion de la partie gauche (liste des Ã©tudiants)
 		panelGauche = new JPanel();
 		panelGauche.setLayout(new BorderLayout());
 
@@ -229,7 +229,7 @@ public class ControlePresence extends JFrame {
 		for(int i = 0 ; i < num.length() ; i++) {
 			if(c[i] == '&' || (c[i] == '1')) {
 				ret += "1";
-			} else if((c[i] == 'é') || (c[i] == '2')) {
+			} else if((c[i] == 'Ã©') || (c[i] == '2')) {
 				ret += "2";
 			} else if((c[i] == '"') || (c[i] == '3')) {
 				ret += "3";
@@ -239,13 +239,13 @@ public class ControlePresence extends JFrame {
 				ret += "5";
 			} else if((c[i] == '-') || (c[i] == '6')) {
 				ret += "6";
-			} else if((c[i] == 'è') || (c[i] == '7')) {
+			} else if((c[i] == 'Ã¨') || (c[i] == '7')) {
 				ret += "7";
 			} else if((c[i] == '_') || (c[i] == '8')) {
 				ret += "8";
-			} else if((c[i] == 'ç') || (c[i] == '9')) {
+			} else if((c[i] == 'Ã§') || (c[i] == '9')) {
 				ret += "9";
-			} else if((c[i] == 'à') || (c[i] == '0')) {
+			} else if((c[i] == 'Ã ') || (c[i] == '0')) {
 				ret += "0";
 			}
 		}
@@ -279,13 +279,13 @@ public class ControlePresence extends JFrame {
 
 
 	/**
-	 * Terminer le contrôle de présence
+	 * Terminer le contrÃ´le de prÃ©sence
 	 */
 	public void terminerControle() {
-		// On désactive la touche VERR MAJ
+		// On dÃ©sactive la touche VERR MAJ
 		//Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
 
-		// On masque la fenêtre de contrôle et on affiche la fenêtre de vérification
+		// On masque la fenÃªtre de contrÃ´le et on affiche la fenÃªtre de vÃ©rification
 		Main.fenetreControle.setVisible(false);
 		Main.fenetreModificationPresence.setVisible(true);
 	}
@@ -293,20 +293,20 @@ public class ControlePresence extends JFrame {
 
 
 	/**
-	 * Retourner à la fenêtre de séléction du cours
+	 * Retourner Ã  la fenÃªtre de sÃ©lÃ©ction du cours
 	 */
 	public void retourSelectionCours() {
 		// On affiche un message d'information
 		int choix = JOptionPane.showConfirmDialog((Component) null,
-				"Toutes les données seront perdues ! Vous devrez scanner à nouveau tous les étudiants.",
+				"Toutes les donnÃ©es seront perdues ! Vous devrez scanner Ã  nouveau tous les Ã©tudiants.",
 				"Attention",
 				JOptionPane.OK_CANCEL_OPTION);
 
 		if(choix == 0) {
-			// On désactive la touche VERR MAJ
+			// On dÃ©sactive la touche VERR MAJ
 			//Toolkit.getDefaultToolkit().setLockingKeyState(KeyEvent.VK_CAPS_LOCK, false);
 
-			// On masque la fenêtre de contrôle de présence, on affiche la fenêtre de séléction du cours
+			// On masque la fenÃªtre de contrÃ´le de prÃ©sence, on affiche la fenÃªtre de sÃ©lÃ©ction du cours
 			Main.fenetreControle.setVisible(false);
 			Main.fenetreSelectionCours.setVisible(true);
 			this.dernierEtudiant = null;

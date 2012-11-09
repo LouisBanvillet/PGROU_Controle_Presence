@@ -38,7 +38,7 @@ public class MaListeEleves extends DefaultListCellRenderer {
 		labelNom.setPreferredSize(new Dimension(180, 20));
 		boiteHorizontale.add(labelNom);
 		
-		// On affiche "présent" si l'étudiant est présent
+		// On affiche "prÃ©sent" si l'Ã©tudiant est prÃ©sent
 		if (etudiant.getPresent()) {
 			
 			labelImage.setText("Present");

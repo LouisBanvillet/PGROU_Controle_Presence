@@ -43,7 +43,7 @@ public class SelectionCours extends JFrame {
 		listeGroupes = new ArrayList<String>();
 		listeGroupes.add("                ");
 		
-		// Liste des matières
+		// Liste des matiÃ¨res
 		listeMatieres = new ArrayList<String>();
 		listeMatieres.add("                ");
 				
@@ -56,20 +56,20 @@ public class SelectionCours extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		// Titre de la fenêtre
+		// Titre de la fenÃªtre
 		JPanel haut = new JPanel();
 		JLabel Titre = new JLabel("Selection d\'un cours");
 		Titre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
 		haut.add(Titre);
 		
-		// Milieu de la fenêtre
+		// Milieu de la fenÃªtre
 		JPanel milieux = new JPanel();
 		milieux.setLayout(new GridLayout(4,0));
 
-		// Liste déroulante des promotions
+		// Liste dÃ©roulante des promotions
 		JPanel milieux0 = new JPanel();
 		milieux0.setLayout(new FlowLayout());
-		JLabel jlPromo = new JLabel("Sélectionnez la promotion");
+		JLabel jlPromo = new JLabel("SÃ©lectionnez la promotion");
 		jcPromo = new JComboBox();
 		remplirComboPromo();
 		milieux0.add(jlPromo);
@@ -77,10 +77,10 @@ public class SelectionCours extends JFrame {
 		milieux.add(milieux0);
         jcPromo.addActionListener(new PromoAction());
 		
-		// Liste déroulante des groupes
+		// Liste dÃ©roulante des groupes
 		JPanel milieux1 = new JPanel();
 		milieux1.setLayout(new FlowLayout());
-		JLabel jlgroupe = new JLabel("Sélectionnez le groupe");
+		JLabel jlgroupe = new JLabel("SÃ©lectionnez le groupe");
 		jcGroupe = new JComboBox();
 		remplirComboGroupe();
 		milieux1.add(jlgroupe);
@@ -88,10 +88,10 @@ public class SelectionCours extends JFrame {
 		milieux.add(milieux1);
         jcGroupe.addActionListener(new GroupeAction());
 		
-		// Liste déroulante des matières
+		// Liste dÃ©roulante des matiÃ¨res
 		JPanel milieux2 = new JPanel();
 		milieux2.setLayout(new FlowLayout());
-		JLabel jlMatiere = new JLabel("Sélectionnez la matière");
+		JLabel jlMatiere = new JLabel("SÃ©lectionnez la matiÃ¨re");
 		jcMatiere = new JComboBox();
 		remplirComboMatiere();
 		milieux2.add(jlMatiere);
@@ -138,7 +138,7 @@ public class SelectionCours extends JFrame {
 	}
 	
 	/**
-     * La liste des groupes est initialisée selon l'item selectionné de la liste déroulante des promotions
+     * La liste des groupes est initialisÃ©e selon l'item selectionnÃ© de la liste dÃ©roulante des promotions
      * @param args the command line arguments
      */
     class PromoAction implements ActionListener {
@@ -150,7 +150,7 @@ public class SelectionCours extends JFrame {
     }
     
     /**
-     * La liste des matières est initialisée selon les items selectionnés dans la liste déroulante des promotions et celle des groupes
+     * La liste des matiÃ¨res est initialisÃ©e selon les items selectionnÃ©s dans la liste dÃ©roulante des promotions et celle des groupes
      * @param args the command line arguments
      */
     class GroupeAction implements ActionListener {
@@ -183,10 +183,10 @@ public class SelectionCours extends JFrame {
 	
 	
 	/**
-	 * Retourner à la fenêtre d'accueil
+	 * Retourner Ã  la fenÃªtre d'accueil
 	 */
 	public void annuler() {
-		// On masque la fenêtre de séléction du cours, on affiche la fenêtre d'accueil
+		// On masque la fenÃªtre de sÃ©lÃ©ction du cours, on affiche la fenÃªtre d'accueil
 		Main.fenetreSelectionCours.setVisible(false);
 		Main.fenetreAccueil.setVisible(true);
 	}
@@ -194,10 +194,10 @@ public class SelectionCours extends JFrame {
 	
 	
 	/**
-	 * Commencer le contrôle de présence (passage à la fenêtre de contrôle)
+	 * Commencer le contrÃ´le de prÃ©sence (passage Ã  la fenÃªtre de contrÃ´le)
 	 */
 	public void commencer() {
-		// On récupère les valeurs des listes déroulantes
+		// On rÃ©cupÃ¨re les valeurs des listes dÃ©roulantes
 		promoChoisie = (String) jcPromo.getSelectedItem();
 		groupeChoisi = (String) jcGroupe.getSelectedItem();
 		matiereChoisie = (String) jcMatiere.getSelectedItem();
@@ -205,7 +205,7 @@ public class SelectionCours extends JFrame {
 		int cours_id = BDDConnexion.coursID(promoChoisie, groupeChoisi, matiereChoisie);
 		Main.fenetreControle.setCours_id(cours_id);
 		
-		// On affiche la fenêtre de contrôle, on masque la fenêtre de séléction du cours
+		// On affiche la fenÃªtre de contrÃ´le, on masque la fenÃªtre de sÃ©lÃ©ction du cours
 		Main.fenetreSelectionCours.setVisible(false);
 		Main.fenetreControle.majFenetre();
 		Main.fenetreControle.setVisible(true);

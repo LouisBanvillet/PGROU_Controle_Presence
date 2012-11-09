@@ -24,8 +24,8 @@ public class FenetreModificationPresence extends JFrame {
 	
 	
 	/**
-	 * Création de la fenêtre
-	 * @param liste des étudiants du groupe concerné par le contrôle de présence
+	 * CrÃ©ation de la fenÃªtre
+	 * @param liste des Ã©tudiants du groupe concernÃ© par le contrÃ´le de prÃ©sence
 	 */
 	public FenetreModificationPresence() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +49,7 @@ public class FenetreModificationPresence extends JFrame {
 		
 		Box boiteHorizontale1= Box.createHorizontalBox();
 			boiteHorizontale1.add(Box.createGlue());
-			JLabel labelDescription = new JLabel("Liste des étudiants dans ce cours : ");
+			JLabel labelDescription = new JLabel("Liste des Ã©tudiants dans ce cours : ");
 			boiteHorizontale1.add(labelDescription);
 			boiteHorizontale1.add(Box.createGlue());
 		boiteVerticale.add(boiteHorizontale1);
@@ -89,13 +89,13 @@ public class FenetreModificationPresence extends JFrame {
 	
 	
 	/**
-	 * Création de la liste des absents
+	 * CrÃ©ation de la liste des absents
 	 */
 	public void creerListeAbsents() {
 
 		listeAbsents = new ArrayList<Etudiant>();
 		//textAreaEtudiantsAbsents.setText("");
-		// On parcours la liste des étudiants pour ajouter les absents
+		// On parcours la liste des Ã©tudiants pour ajouter les absents
 		for(Etudiant etu : Main.fenetreControle.getListeEtudiants()) {
 			if(!etu.getPresent()){
 				listeAbsents.add(etu);
@@ -114,10 +114,10 @@ public class FenetreModificationPresence extends JFrame {
 	
 	
 	/**
-	 * Retour à la fenêtre de contrôle des présences
+	 * Retour Ã  la fenÃªtre de contrÃ´le des prÃ©sences
 	 */
 	public void retourControle() {		
-		// On masque la fenêtre avec lal iste des absents, on affiche la fenêtre de contrôle de présence
+		// On masque la fenÃªtre avec lal iste des absents, on affiche la fenÃªtre de contrÃ´le de prÃ©sence
 		Main.fenetreModificationPresence.setVisible(false);
 		Main.fenetreControle.majFenetre();
 		Main.fenetreControle.setVisible(true);

@@ -36,8 +36,8 @@ public class Etudiant {
 	
 	
 	/**
-	 * Télécharge la photo d'un étudiant
-	 * @return Booléen : true si la photo a été téléchargée ou existe déjà, false sinon
+	 * TÃ©lÃ©charge la photo d'un Ã©tudiant
+	 * @return BoolÃ©en : true si la photo a Ã©tÃ© tÃ©lÃ©chargÃ©e ou existe dÃ©jÃ , false sinon
 	 */
 	public boolean telechargerPhoto() {
 		try {
@@ -63,7 +63,7 @@ public class Etudiant {
 			return true;
 		}
 		catch (Exception e) {
-			System.out.println("Erreur lors du téléchargement de la photo de " + this.nom + " " + this.prenom);
+			System.out.println("Erreur lors du tÃ©lÃ©chargement de la photo de " + this.nom + " " + this.prenom);
 			return false;
 		}
 	}

@@ -25,7 +25,7 @@ public class TableRecapitulatif extends AbstractTableModel{
 	    if(column == 0){
 	    	return "Nom";
 	    }else{
-	    	return "Excusé?";
+	    	return "ExcusÃ©?";
 	    }    
 	}
 	

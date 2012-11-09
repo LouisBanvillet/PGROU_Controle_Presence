@@ -16,7 +16,7 @@ public class BDDConnexion {
 	protected static Connection conn;
 
 	/**
-	 * Connexion base de données après lecture des paramètres de connexion fichier MDP_connexionBDD.txt
+	 * Connexion base de donnÃ©es aprÃ¨s lecture des paramÃ¨tres de connexion fichier MDP_connexionBDD.txt
 	 */
 	public static void init() {
 
@@ -42,7 +42,7 @@ public class BDDConnexion {
 	}
 
 	/**
-	 * Crée la liste des groupes en fonction de la promotion sélectionnée
+	 * CrÃ©e la liste des groupes en fonction de la promotion sÃ©lectionnÃ©e
 	 * @param promoChoisie
 	 */
 	public static ArrayList<String> listeGroupes(String promoChoisie){
@@ -72,7 +72,7 @@ public class BDDConnexion {
 	}
 
 	/**
-	 * Crée la liste des matières en fonction de la promotion sélectionnée
+	 * CrÃ©e la liste des matiÃ¨res en fonction de la promotion sÃ©lectionnÃ©e
 	 * @param promoChoisie
 	 */
 	public static ArrayList<String> listeMatieres(String promoChoisie, String groupeChoisi){
@@ -102,7 +102,7 @@ public class BDDConnexion {
 	}
 
 	/**
-	 * Renvoie le cours_id connaissant la promo, le groupe et la matière
+	 * Renvoie le cours_id connaissant la promo, le groupe et la matiÃ¨re
 	 * @param promoChoisie
 	 * @param groupeChoisie
 	 * @param matiereChoisie
@@ -137,7 +137,7 @@ public class BDDConnexion {
 	}
 
 	/**
-	 * Crée la liste des eleves_id à partir du cours_id
+	 * CrÃ©e la liste des eleves_id Ã  partir du cours_id
 	 * @param cours_id
 	 */
 	public static ArrayList<Integer> listeElevesID(int cours_id){
@@ -167,7 +167,7 @@ public class BDDConnexion {
 	}
 
 	/**
-	 * Crée la liste des etudiants à partir des eleves_id
+	 * CrÃ©e la liste des etudiants Ã  partir des eleves_id
 	 * @param cours_id
 	 */
 	public static ArrayList<Etudiant> listeEtudiants(ArrayList<Integer> listeElevesID){
@@ -233,7 +233,7 @@ public class BDDConnexion {
 
 
 	/**
-	 * Envoi les données reuceuillies à la BDD
+	 * Envoi les donnÃ©es reuceuillies Ã  la BDD
 	 * @param cours_id
 	 * @param listeEtudiants
 	 */
@@ -282,7 +282,7 @@ public class BDDConnexion {
 		}
 
 		if(envoye){JOptionPane.showMessageDialog((Component) null,
-				"Les données ont été envoyées.",
+				"Les donnÃ©es ont Ã©tÃ© envoyÃ©es.",
 				"Attention",
 				JOptionPane.OK_CANCEL_OPTION);
 		}

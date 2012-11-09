@@ -21,7 +21,7 @@ public class PageAccueil extends JFrame {
 
 
 	/**
-	 * Création de la fenêtre
+	 * CrÃ©ation de la fenÃªtre
 	 */
 	public PageAccueil() {
 
@@ -36,13 +36,13 @@ public class PageAccueil extends JFrame {
 
 		// Affichage du titre
 		JPanel haut = new JPanel();
-		JLabel Titre = new JLabel("Contrôle de présence");
+		JLabel Titre = new JLabel("ContrÃ´le de prÃ©sence");
 		Titre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
 		haut.add(Titre);
 
 
-		// Gestion du bouton de lancement du contrôle de présence
-		JButton controler = new JButton("Commencer le contrôle de présence");
+		// Gestion du bouton de lancement du contrÃ´le de prÃ©sence
+		JButton controler = new JButton("Commencer le contrÃ´le de prÃ©sence");
 		controler.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				commencerControle();
@@ -51,11 +51,11 @@ public class PageAccueil extends JFrame {
 
 
 		//Gestion du bouton de mise a jour du fichier xml
-		boutonTelechargement = "Télécharger la liste des étudiants";
+		boutonTelechargement = "TÃ©lÃ©charger la liste des Ã©tudiants";
 		File fichierXml = new File("etudiants.xml");
 
 		if(fichierXml.exists()) {
-			boutonTelechargement = "Mettre à jour la liste des étudiants";
+			boutonTelechargement = "Mettre Ã  jour la liste des Ã©tudiants";
 		}
 
 		majEtudiant = new JButton(boutonTelechargement);
@@ -101,7 +101,7 @@ public class PageAccueil extends JFrame {
 
 
 	/**
-	 * Lancement du contrôle de présence
+	 * Lancement du contrÃ´le de prÃ©sence
 	 */
 	public void commencerControle() {
 		Main.fenetreAccueil.setVisible(false);
@@ -109,7 +109,7 @@ public class PageAccueil extends JFrame {
 	}
 
 	/**
-	 * Télécharge la liste des étudiants depuis la base de données AGAP
+	 * TÃ©lÃ©charge la liste des Ã©tudiants depuis la base de donnÃ©es AGAP
 	 */
 	public void telechargerListeEtudiants() {
 

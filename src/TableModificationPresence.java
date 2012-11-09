@@ -13,9 +13,9 @@ public class TableModificationPresence extends AbstractTableModel{
 		if(column == 0){
 			return "Nom";	
 		}else if(column == 1){
-			return "Présent";
+			return "PrÃ©sent";
 		}else{
-			return "Excusé";
+			return "ExcusÃ©";
 		}
 
 	}

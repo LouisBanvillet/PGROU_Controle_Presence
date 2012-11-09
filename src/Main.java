@@ -1,8 +1,8 @@
 public class Main {
 	
 	/**
-	 * Chaque fenêtre utilisée dans l'application est un attribut,
-	 * qui pourra être utilisé par toutes les classes. kevon
+	 * Chaque fenÃªtre utilisÃ©e dans l'application est un attribut,
+	 * qui pourra Ãªtre utilisÃ© par toutes les classes. kevon
 	 */
 	
 	protected static PageAccueil fenetreAccueil;
@@ -18,13 +18,13 @@ public class Main {
 	public static void main(String[] args) {
 		BDDConnexion.init();
 				
-		// On créé une instance de chaque fenêtre
+		// On crÃ©e une instance de chaque fenÃªtre
 		fenetreAccueil = new PageAccueil();
 		fenetreSelectionCours = new SelectionCours();
 		fenetreControle = new ControlePresence();
 		fenetreModificationPresence = new FenetreModificationPresence();
 		
-		// On masque toutes les fenêtre sauf la fenêtre d'accueil
+		// On masque toutes les fenÃªtres sauf la fenÃªtre d'accueil
 		fenetreSelectionCours.setVisible(false);
 		fenetreControle.setVisible(false);
 		fenetreAccueil.setVisible(true);
