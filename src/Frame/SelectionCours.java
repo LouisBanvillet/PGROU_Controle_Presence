@@ -13,11 +13,7 @@ import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 
@@ -204,15 +200,20 @@ public class SelectionCours extends JFrame {
 		promoChoisie = (String) jcPromo.getSelectedItem();
 		groupeChoisi = (String) jcGroupe.getSelectedItem();
 		matiereChoisie = (String) jcMatiere.getSelectedItem();
-		
-		int cours_id = BDDConnexion.coursID(promoChoisie, groupeChoisi, matiereChoisie);
-		Main.fenetreControle.setCours_id(cours_id);
-		
-		// On affiche la fenêtre de contrôle, on masque la fenêtre de séléction du cours
-		Main.fenetreSelectionCours.setVisible(false);
-		Main.fenetreControle.majFenetre();
-		Main.fenetreControle.setVisible(true);
-		Main.fenetreControle.textFocus();
+		if(jcPromo.getSelectedIndex() > 0  &&
+                   jcGroupe.getSelectedIndex() > 0 &&
+                   jcMatiere.getSelectedIndex() > 0)
+                {
+                    int cours_id = BDDConnexion.coursID(promoChoisie, groupeChoisi, matiereChoisie);
+                    Main.fenetreControle.setCours_id(cours_id);
+                    // On affiche la fenêtre de contrôle, on masque la fenêtre de séléction du cours
+                    Main.fenetreSelectionCours.setVisible(false);
+                    Main.fenetreControle.majFenetre();
+                    Main.fenetreControle.setVisible(true);
+                    Main.fenetreControle.textFocus();
+                }else{
+                    JOptionPane.showMessageDialog(null, "C'est necessaire de choisir la matière!", "Erreur", JOptionPane.INFORMATION_MESSAGE);
+                }
 	}
 	
 	
