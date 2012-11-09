@@ -1,3 +1,8 @@
+package Frame;
+
+import BDD.BDDConnexion;
+import BDD.Etudiant;
+import Main.Main;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;

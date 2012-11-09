@@ -1,3 +1,12 @@
+package Main;
+
+import BDD.BDDConnexion;
+import Frame.ControlePresence;
+import Frame.FenetreModificationPresence;
+import Frame.FenetreRecapitulatif;
+import Frame.PageAccueil;
+import Frame.SelectionCours;
+
 public class Main {
 	
 	/**
@@ -5,11 +14,11 @@ public class Main {
 	 * qui pourra être utilisé par toutes les classes. kevon
 	 */
 	
-	protected static PageAccueil fenetreAccueil;
-	protected static SelectionCours fenetreSelectionCours;
-	protected static ControlePresence fenetreControle;
-	protected static FenetreRecapitulatif fenetreRecapitulatif;
-	protected static FenetreModificationPresence fenetreModificationPresence;
+	public static PageAccueil fenetreAccueil;
+	public static SelectionCours fenetreSelectionCours;
+	public static ControlePresence fenetreControle;
+	public static FenetreRecapitulatif fenetreRecapitulatif;
+	public static FenetreModificationPresence fenetreModificationPresence;
 	
 	
 	/**

@@ -1,3 +1,6 @@
+package Frame;
+
+import Main.Main;
 import javax.swing.table.AbstractTableModel;
 
 

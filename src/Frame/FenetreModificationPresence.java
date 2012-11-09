@@ -1,9 +1,12 @@
+package Frame;
+
+import BDD.Etudiant;
+import Main.Main;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;

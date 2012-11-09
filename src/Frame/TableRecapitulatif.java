@@ -1,3 +1,7 @@
+package Frame;
+
+import BDD.Etudiant;
+import Main.Main;
 import javax.swing.table.AbstractTableModel;
 
 

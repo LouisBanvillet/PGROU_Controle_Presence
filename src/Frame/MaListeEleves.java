@@ -1,7 +1,10 @@
+package Frame;
+
+import BDD.Etudiant;
+import Main.Main;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-
 import javax.swing.Box;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JLabel;
