@@ -28,6 +28,10 @@ public class SelectionCours extends JFrame {
 	
 	private JComboBox jcPromo, jcGroupe, jcMatiere;
 	
+        private JLabel     lblMyFare;
+        private JTextField txtMyFare;
+        private JLabel     lblProfesseur;
+        private JComboBox  jcProfesseur;
 	
 	/**
 	 * Create the frame.
@@ -60,11 +64,12 @@ public class SelectionCours extends JFrame {
 		JLabel Titre = new JLabel("Selection d\'un cours");
 		Titre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
 		haut.add(Titre);
-		
+                
 		// Milieu de la fenêtre
 		JPanel milieux = new JPanel();
 		milieux.setLayout(new GridLayout(4,0));
 
+                
 		// Liste déroulante des promotions
 		JPanel milieux0 = new JPanel();
 		milieux0.setLayout(new FlowLayout());
@@ -76,6 +81,7 @@ public class SelectionCours extends JFrame {
 		milieux.add(milieux0);
         jcPromo.addActionListener(new PromoAction());
 		
+                JPanel panelMatieres = new JPanel();
 		// Liste déroulante des groupes
 		JPanel milieux1 = new JPanel();
 		milieux1.setLayout(new FlowLayout());
@@ -84,9 +90,10 @@ public class SelectionCours extends JFrame {
 		remplirComboGroupe();
 		milieux1.add(jlgroupe);
 		milieux1.add(jcGroupe);	
-		milieux.add(milieux1);
+		panelMatieres.add(milieux1);
         jcGroupe.addActionListener(new GroupeAction());
-		
+                
+        
 		// Liste déroulante des matières
 		JPanel milieux2 = new JPanel();
 		milieux2.setLayout(new FlowLayout());
@@ -95,7 +102,18 @@ public class SelectionCours extends JFrame {
 		remplirComboMatiere();
 		milieux2.add(jlMatiere);
 		milieux2.add(jcMatiere);
-		milieux.add(milieux2);
+                panelMatieres.add(milieux2);
+                
+                //Créer textField pour le myFared
+                JPanel milieux_prof = new JPanel();
+                txtMyFare = new JTextField();
+                jcProfesseur = new JComboBox();
+                lblMyFare = new JLabel("myFare enseignant:");
+                lblProfesseur = new JLabel("Selectionner le cours:");
+                milieux_prof.add(lblMyFare);
+                milieux_prof.add(txtMyFare);
+                panelMatieres.add(milieux_prof);
+		milieux.add(panelMatieres);
 		
 		// Date
 		JPanel milieux3 = new JPanel();
