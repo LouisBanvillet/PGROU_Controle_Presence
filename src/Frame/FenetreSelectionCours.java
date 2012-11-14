@@ -24,7 +24,7 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
     private ArrayList<String> listePromo = new ArrayList<String>();
     private ArrayList<String> listeGroupes = new ArrayList<String>();
     private ArrayList<String> listeMatieres = new ArrayList<String>();
-    
+    private ArrayList<String> listeCoursMyfare = new ArrayList<String>();
     
     private static String promoChoisie = "";
     private static String groupeChoisi = "";
@@ -44,14 +44,15 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
 	listeGroupes.add("                ");
 	// Liste des matières
 	listeMatieres.add("                ");
+        listeCoursMyfare.add("                ");
         remplirComboPromo();
         remplirComboGroupe();
         remplirComboMatiere();
-        
+        remplirComboCoursMyFare();
         jcPromo.addActionListener(new PromoAction());
         
         jcGroupe.addActionListener(new GroupeAction());
-        
+        this.jTextMyFare.requestFocus();
     }
     
     /**
@@ -100,8 +101,8 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox4 = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
+        jComboCoursMyFare = new javax.swing.JComboBox();
+        jTextMyFare = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -168,6 +169,17 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Sélection avec myFare"));
 
+        jTextMyFare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextMyFareActionPerformed(evt);
+            }
+        });
+        jTextMyFare.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextMyFareKeyPressed(evt);
+            }
+        });
+
         jLabel4.setText("Numéro myFare:");
 
         jLabel5.setText("Cours:");
@@ -182,11 +194,11 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextMyFare, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboCoursMyFare, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -194,11 +206,11 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextMyFare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboCoursMyFare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -261,12 +273,31 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
 	Main.fenetreAccueil.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jTextMyFareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMyFareActionPerformed
+
+    }//GEN-LAST:event_jTextMyFareActionPerformed
+
+    private void jTextMyFareKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextMyFareKeyPressed
+        String codeMyFare;
+        if(java.awt.event.KeyEvent.VK_ENTER == evt.getKeyCode()){
+            codeMyFare = jTextMyFare.getText();
+            listeCoursMyfare = BDDConnexion.listeCoursEnseignant(codeMyFare);
+            remplirComboCoursMyFare();
+        }
+    }//GEN-LAST:event_jTextMyFareKeyPressed
+
     	public void remplirComboPromo() {
             for(String s : listePromo) {
             	jcPromo.addItem(s);
             }
 	}
 	
+        public void remplirComboCoursMyFare(){
+            for(String s : listeCoursMyfare){
+                jComboCoursMyFare.addItem(s);
+            }
+        }
+        
 	public void remplirComboMatiere() {
             for(String s : listeMatieres) {
             	jcMatiere.addItem(s);
@@ -323,7 +354,7 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JComboBox jComboCoursMyFare;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -331,7 +362,7 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextMyFare;
     private javax.swing.JComboBox jcGroupe;
     private javax.swing.JComboBox jcMatiere;
     private javax.swing.JComboBox jcPromo;

@@ -42,6 +42,33 @@ public class BDDConnexion {
 			e.printStackTrace();
 		}
 	}
+        
+        /**
+         * Retourne les cours données pour un enseignant
+         * @param myFare String avec le numéro myFare du enseignant
+         */
+        public static ArrayList<String> listeCoursEnseignant(String myFare){
+            ArrayList<String> listeCours = new ArrayList<String>();
+            try{
+                Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                String query = "SELECT c.cours_designation " +
+                               "  FROM cours c, " +
+                               "       enseignants e," +
+                               "       cours_enseignant ce " +
+                               " WHERE e.enseignant_miFar = '" + myFare + "' " +
+                               "   AND e.enseignant_id = ce.enseignant_id " +
+                               "   AND c.cours_id = ce.cours_id;";
+                ResultSet res = state.executeQuery(query);
+                while (res.next()) {
+                    listeCours.add(res.getString("cours_designation"));
+		}
+		res.close();
+		state.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return listeCours;        
+        }
 
 	/**
 	 * Crée la liste des groupes en fonction de la promotion sélectionnée
