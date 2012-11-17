@@ -129,7 +129,41 @@ public class BDDConnexion {
 
 		return listeMatieres;
 	}
+	/**
+	 * Renvoie le cours_id connaissant la promo, le groupe et la matière
+	 * @param myFareProf
+	 * @param matiereChoisie
+	 */
+        public static int coursID(String myFareProf, String matiereChoisie){
+            int cours_id = 0;
 
+            		try {
+			Statement state = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+
+			String query = ("SELECT c.cours_id " +
+                                        "  FROM cours c,   " +
+                                        "       enseignants e, " +
+                                        "       cours_enseignant ce " +
+                                        " WHERE c.cours_designation = '" + matiereChoisie + "' " +
+                                        "   AND e.enseignant_mifar = '"+ myFareProf +"' " +
+                                        "   AND e.enseignant_id =  ce.enseignant_id " + 
+                                        "   AND ce.cours_id = c.cours_id;");
+
+			ResultSet res = state.executeQuery(query);
+
+			while (res.next()) {
+				cours_id = res.getInt("cours_id");
+			}
+
+			res.close();
+			state.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return cours_id;
+        }
 	/**
 	 * Renvoie le cours_id connaissant la promo, le groupe et la matière
 	 * @param promoChoisie
