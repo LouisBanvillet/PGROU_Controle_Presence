@@ -29,7 +29,7 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
     private static String promoChoisie = "";
     private static String groupeChoisi = "";
     private static String matiereChoisie = "";
-
+    private static String matiereMyFare  = "";
     /**
      * Creates new form FrameSelectionCours
      */
@@ -252,11 +252,23 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
 		promoChoisie = (String) jcPromo.getSelectedItem();
 		groupeChoisi = (String) jcGroupe.getSelectedItem();
 		matiereChoisie = (String) jcMatiere.getSelectedItem();
+                matiereMyFare = (String) jComboCoursMyFare.getSelectedItem();
+                
 		if(jcPromo.getSelectedIndex() > 0  &&
                    jcGroupe.getSelectedIndex() > 0 &&
                    jcMatiere.getSelectedIndex() > 0)
                 {
                     int cours_id = BDDConnexion.coursID(promoChoisie, groupeChoisi, matiereChoisie);
+                    Main.fenetreControle.setCours_id(cours_id);
+                    // On affiche la fenêtre de contrôle, on masque la fenêtre de séléction du cours
+                    Main.fenetreSelectionCours.setVisible(false);
+                    Main.fenetreControle.majFenetre();
+                    Main.fenetreControle.setVisible(true);
+                    Main.fenetreControle.textFocus();
+                }
+                else if(jComboCoursMyFare.getSelectedIndex() > 0)
+                {
+                    int cours_id = BDDConnexion.coursID(jTextMyFare.getText(), matiereMyFare);
                     Main.fenetreControle.setCours_id(cours_id);
                     // On affiche la fenêtre de contrôle, on masque la fenêtre de séléction du cours
                     Main.fenetreSelectionCours.setVisible(false);
