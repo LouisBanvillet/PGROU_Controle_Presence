@@ -6,7 +6,7 @@ import Frame.FenetreModificationPresence;
 import Frame.FenetreRecapitulatif;
 import Frame.FenetreSelectionCours;
 import Frame.PageAccueil;
-import Frame.SelectionCours;
+//import Frame.SelectionCours;
 
 
 public class Main {
@@ -30,11 +30,12 @@ public class Main {
 		BDDConnexion.init();
 				
 		// On crée une instance de chaque fenêtre
-		fenetreAccueil = new PageAccueil();
+		fenetreSelectionCours = new FenetreSelectionCours();
+                fenetreAccueil = new PageAccueil();
 //		fenetreSelectionCours = new SelectionCours();
 		fenetreControle = new ControlePresence();
 		fenetreModificationPresence = new FenetreModificationPresence();
-		fenetreSelectionCours = new FenetreSelectionCours();
+		
 		// On masque toutes les fenêtres sauf la fenêtre d'accueil
 		fenetreSelectionCours.setVisible(false);
 		fenetreControle.setVisible(false);

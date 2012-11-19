@@ -20,6 +20,11 @@ import javax.swing.JPanel;
 public class FenetreSelectionCours extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
+
+    String getGroupeChoisi() {
+        return this.groupeChoisi;
+    }
+
     private JPanel contentPane;
     private ArrayList<String> listePromo = new ArrayList<String>();
     private ArrayList<String> listeGroupes = new ArrayList<String>();
@@ -30,6 +35,16 @@ public class FenetreSelectionCours extends javax.swing.JFrame {
     private static String groupeChoisi = "";
     private static String matiereChoisie = "";
     private static String matiereMyFare  = "";
+    
+    
+    
+    
+    String getMatiereChoisie() {
+        return this.matiereChoisie;
+    }
+    
+    
+    
     /**
      * Creates new form FrameSelectionCours
      */

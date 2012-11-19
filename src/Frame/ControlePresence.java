@@ -65,8 +65,8 @@ public class ControlePresence extends JFrame {
 
 		// Affichage du titre de la fenêtre
 		String labelTitre = "Contrôle de présence - " +
-				SelectionCours.getMatiereChoisie() + " - " +
-				SelectionCours.getGroupeChoisi();
+				Main.fenetreSelectionCours.getMatiereChoisie() + " - " +
+				Main.fenetreSelectionCours.getGroupeChoisi();
 		JLabel titreFenetre = new JLabel(labelTitre);
 		titreFenetre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 17));
 
