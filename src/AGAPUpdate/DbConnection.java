@@ -39,12 +39,41 @@ class DbConnection{
         connection.commit();
     }
     
+    public void executeUpdate(String query){
+        Statement st;
+        try{
+            st = connection.createStatement();
+            st.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }        
+    }
+    
+    public PreparedStatement getPreparedStatement(String sql){
+        try {
+            return connection.prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public void execute(String query){
+        Statement st;
+        try{
+            st = connection.createStatement();
+            st.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }        
+    }
+    
     public ResultSet executeQuery(String query){
         Statement st;
         ResultSet rs = null;
         try{
             st = connection.createStatement();
-            rs = st.executeQuery(query);
+            st.execute(query);
         }catch(Exception e){
             e.printStackTrace();
         }        
