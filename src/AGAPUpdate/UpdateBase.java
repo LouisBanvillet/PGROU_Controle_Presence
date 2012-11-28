@@ -4,6 +4,7 @@
  */
 package AGAPUpdate;
 
+import java.awt.Component;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -11,17 +12,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.swing.JList;
+import javax.swing.DefaultListModel; 
 
 public class UpdateBase {
     
     private DbConnection dbTo;
     private DbConnection dbFrom;    
     private String tables[];
-    public UpdateBase(DbConnection dbCopyTo, DbConnection dbCopyFrom, String tables[]){
+    private JList jList;
+    
+    public UpdateBase(DbConnection dbCopyTo, DbConnection dbCopyFrom, String tables[], JList listMessages){
         dbTo = dbCopyTo;
         dbFrom = dbCopyFrom;        
         this.tables = tables;
+        jList = listMessages;
     }
     
     /**
@@ -38,7 +43,7 @@ public class UpdateBase {
             }
         }
         System.out.println(query);
-        dbTo.executeQuery(query);
+        dbTo.execute(query);
     }
     
     /**
@@ -47,7 +52,7 @@ public class UpdateBase {
     private void removeFKCheck(){
         for(String table:tables){
             String query = "ALTER TABLE " + table + " DISABLE TRIGGER ALL;";
-            this.dbLocal.executeQuery(query);
+            this.dbTo.execute(query);
         }
     }
     /**
@@ -56,7 +61,7 @@ public class UpdateBase {
     private void addFKCheck(){
         for(String table:tables){
             String query = "ALTER TABLE " + table + " ENABLE TRIGGER ALL;";
-            this.dbLocal.executeQuery(query);
+            this.dbTo.execute(query);
         }
     }
     
@@ -71,27 +76,30 @@ public class UpdateBase {
             copierPourBaseLocale(tablename);
         }
         addFKCheck();
-        //commit
-        try {
-            dbTo.Commit();
-        } catch (SQLException ex) {
-            Logger.getLogger(UpdateBase.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
+    public void setList(JList list){
+        jList = list;
+    }
+    
     /**
      * Copie tous les données d'une table remote pour la base locale
      * @param tablename 
      */
     private void copierPourBaseLocale(String tablename) {
+        System.out.println("En train de copier "+tablename);
+        if(jList!=null){
+//            DefaultListModel<String> model = jList.getModel();  
+//            model.addElement("En train de copier "+tablename);  
+        }
         String query = "SELECT * FROM " + tablename + ";";
-        ResultSet rs = dbRemote.executeQuery(query);
+        ResultSet rs = dbFrom.executeQuery(query);
         ArrayList<String> columnNames = new ArrayList<String>();
         ArrayList<String> columnTypes = new ArrayList<String>();
         //on prend le nom de les columnes et les types
         try {
             ResultSetMetaData rsmd = rs.getMetaData();
-            for(int i = 0; i < rsmd.getColumnCount(); i++){
+            for(int i = 1; i <= rsmd.getColumnCount(); i++){
                 columnNames.add(rsmd.getColumnName(i));
                 columnTypes.add(rsmd.getColumnTypeName(i));
             }
@@ -111,14 +119,19 @@ public class UpdateBase {
                 int cnt = 0;
                 for(String colname : columnNames){
                     //
-                    if(columnTypes.get(cnt) == "integer"){
-                    
+                    if(columnTypes.get(cnt).equals("integer") ||
+                       columnTypes.get(cnt).equals("int4") ||
+                       columnTypes.get(cnt).equals("int2") ||
+                       columnTypes.get(cnt).equals("int8")){
+                        pStatementet.setInt(cnt + 1, rs.getInt(cnt+1));
                     }else if(columnTypes.get(cnt) == "numeric"){
-                    
+                        pStatementet.setDouble(cnt + 1, rs.getDouble(cnt+1));
                     }else if(columnTypes.get(cnt) == "date"){
-                    
-                    }else if(columnTypes.get(cnt).contains("character")){
-                    
+                        pStatementet.setDate(cnt + 1, rs.getDate(cnt + 1));
+                    }else if(columnTypes.get(cnt).contains("character") ||
+                             columnTypes.get(cnt).equals("varchar") ||
+                             columnTypes.get(cnt).equals("bpchar") ){
+                        pStatementet.setString(cnt + 1, rs.getString(cnt + 1));
                     }else{
                         try {
                             throw new Exception("Not implemented type " + columnTypes.get(cnt));
@@ -126,9 +139,10 @@ public class UpdateBase {
                             Logger.getLogger(UpdateBase.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
-                    rs.getObject(colname);
+                    
                     cnt++;
                 }
+                pStatementet.executeUpdate();
             }
         } catch (SQLException ex) {
             Logger.getLogger(UpdateBase.class.getName()).log(Level.SEVERE, null, ex);

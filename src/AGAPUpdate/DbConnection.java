@@ -23,7 +23,6 @@ class DbConnection{
                         String password) throws SQLException{    
         
         connection = DriverManager.getConnection("jdbc:postgresql://"+hostname+":"+port+"/"+dbName,username, password);
-        connection.close();
         connection.setAutoCommit(true);
     }
     
@@ -73,7 +72,7 @@ class DbConnection{
         ResultSet rs = null;
         try{
             st = connection.createStatement();
-            st.execute(query);
+            rs = st.executeQuery(query);
         }catch(Exception e){
             e.printStackTrace();
         }        

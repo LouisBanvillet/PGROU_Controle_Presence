@@ -1,5 +1,7 @@
 package Main;
 
+import AGAPUpdate.AGAPupdate;
+import AGAPUpdate.FenetreMisAJour;
 import BDD.BDDConnexion;
 import Frame.ControlePresence;
 import Frame.FenetreModificationPresence;
@@ -22,7 +24,7 @@ public class Main {
 	public static FenetreRecapitulatif fenetreRecapitulatif;
 	public static FenetreModificationPresence fenetreModificationPresence;
 	public static FenetreSelectionCours fenetreSelectionCours;
-	
+	public static FenetreMisAJour fenetreMisAJour;
 	/**
 	 * Lancement de l'application
 	 */
@@ -35,12 +37,14 @@ public class Main {
 //		fenetreSelectionCours = new SelectionCours();
 		fenetreControle = new ControlePresence();
 		fenetreModificationPresence = new FenetreModificationPresence();
-		
+		fenetreMisAJour = new FenetreMisAJour();
 		// On masque toutes les fenêtres sauf la fenêtre d'accueil
 		fenetreSelectionCours.setVisible(false);
 		fenetreControle.setVisible(false);
 		fenetreAccueil.setVisible(true);
 		fenetreModificationPresence.setVisible(false);
+                fenetreMisAJour.setVisible(false);
+                AGAPupdate.AGAPupdateInitializer();
 	}
 
 }

@@ -54,17 +54,17 @@ public class PageAccueil extends JFrame {
 
 
 		//Gestion du bouton de mise a jour du fichier xml
-		boutonTelechargement = "Télécharger la liste des étudiants";
-		File fichierXml = new File("etudiants.xml");
-
-		if(fichierXml.exists()) {
-			boutonTelechargement = "Mettre à jour la liste des étudiants";
-		}
+		boutonTelechargement = "Mis à jour de les données";
+//		File fichierXml = new File("etudiants.xml");
+//
+//		if(fichierXml.exists()) {
+//			boutonTelechargement = "Mettre à jour la liste des étudiants";
+//		}
 
 		majEtudiant = new JButton(boutonTelechargement);
 		majEtudiant.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
-				telechargerListeEtudiants();
+				montrerFenetreAGAP();
 			}
 		});
 
@@ -114,8 +114,8 @@ public class PageAccueil extends JFrame {
 	/**
 	 * Télécharge la liste des étudiants depuis la base de données AGAP
 	 */
-	public void telechargerListeEtudiants() {
-
+	public void montrerFenetreAGAP() {
+            Main.fenetreMisAJour.setVisible(true);
 	}
 
 	
