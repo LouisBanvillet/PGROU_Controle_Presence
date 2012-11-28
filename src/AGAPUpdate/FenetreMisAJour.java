@@ -110,7 +110,7 @@ public class FenetreMisAJour extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        UpdateBase upBase = new UpdateBase(AGAPupdate.baseLocale, AGAPupdate.baseRemote, AGAPupdate.tablesLocal, this.jList1);
+        UpdateBase upBase = new UpdateBase(AGAPupdate.baseLocale, AGAPupdate.baseRemote, AGAPupdate.tablesLocal, this.jList1, this.jProgressBar1);
         upBase.update();
     }//GEN-LAST:event_jButton1ActionPerformed
 

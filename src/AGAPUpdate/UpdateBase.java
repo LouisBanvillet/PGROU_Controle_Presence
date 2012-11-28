@@ -10,10 +10,12 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JList;
 import javax.swing.DefaultListModel; 
+import javax.swing.JProgressBar;
 
 public class UpdateBase {
     
@@ -21,12 +23,18 @@ public class UpdateBase {
     private DbConnection dbFrom;    
     private String tables[];
     private JList jList;
-    
-    public UpdateBase(DbConnection dbCopyTo, DbConnection dbCopyFrom, String tables[], JList listMessages){
+    private Vector<String> messages;
+    private JProgressBar jBar;
+    public UpdateBase(DbConnection dbCopyTo, DbConnection dbCopyFrom, 
+                      String tables[], JList listMessages, JProgressBar jPBar){
         dbTo = dbCopyTo;
         dbFrom = dbCopyFrom;        
         this.tables = tables;
         jList = listMessages;
+        messages = new Vector<String>();
+        jBar = jPBar;
+        jBar.setMaximum(tables.length);
+        jBar.setValue(0);
     }
     
     /**
@@ -89,8 +97,15 @@ public class UpdateBase {
     private void copierPourBaseLocale(String tablename) {
         System.out.println("En train de copier "+tablename);
         if(jList!=null){
-//            DefaultListModel<String> model = jList.getModel();  
-//            model.addElement("En train de copier "+tablename);  
+            messages.add("En train de copier " + tablename);
+            jList.setListData(messages);
+            jList.revalidate();
+            jList.repaint(jList.getBounds());
+        }
+        if(jBar != null){
+            jBar.setValue(jBar.getValue()+1);
+            jBar.revalidate();
+            jBar.repaint(jBar.getBounds());
         }
         String query = "SELECT * FROM " + tablename + ";";
         ResultSet rs = dbFrom.executeQuery(query);
